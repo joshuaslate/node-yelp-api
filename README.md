@@ -4,7 +4,7 @@ A promise-based JavaScript client for dealing with Yelp's API (v3).
 ## Usage
 Refer to documentation for parameters that can be passed in: https://www.yelp.com/developers/documentation/v3
 ```
-const Yelp = require('./index').default;
+const Yelp = require('node-yelp-api-v3');
 const yelp = new Yelp({
   consumer_key: 'consumer-key',
   consumer_secret: 'consumer-secret'
