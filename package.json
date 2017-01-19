@@ -1,6 +1,6 @@
 {
   "name": "node-yelp-api-v3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A promise-based JavaScript client for dealing with Yelp's API (v3).",
   "main": "./index.js",
   "scripts": {
@@ -15,7 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/joshuaslate/node-yelp-api.git"
   },
-  "keywords": ["yelp"],
+  "keywords": [
+    "yelp"
+  ],
   "author": "Joshua Anderson Slate <josh@slatepeak.com>",
   "license": "MIT",
   "bugs": {
