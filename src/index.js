@@ -57,7 +57,7 @@ class Yelp {
           }
           if (time > maxTime) {
             clearInterval(interval);
-            return reject(new Error('Token request timed out.'));
+            return reject(new Error('Yelp fetch token request timed out.'));
           }
           time += 100;
         }, 200);
@@ -69,18 +69,31 @@ class Yelp {
     }
   }
 
-  makeReq(resource, params = {}) {
+  makeReq(resource, params = {}, tries) {
+    if (!tries) {
+      tries = 0;
+    };
+
     const promise = new Promise((resolve, reject) => {
       const debug = params.debug;
       delete params.debug;
 
+      // If there is no access token, throw an error stating that
       if (!this.access_token) { return reject(new Error('Missing access_token')); }
 
       this.oauth2.get(
         `${baseUrl}${resource}?${querystring.stringify(params)}`,
         this.access_token,
         (err, _data, response) => {
-          if (err) { return reject(err); }
+          if (err) {
+            // Try three times on a 401 to refresh the access token
+            // It seems they last for about three months before expiring
+            if (tries < 3 && err.statusCode === 401) {
+              return this.getAccessToken().then(() => this.makeReq(resource, params, tries));
+            }
+
+            return reject(err);
+          }
           const data = JSON.parse(_data);
           if (debug) { return resolve([ data, response ]); }
           resolve(data);
