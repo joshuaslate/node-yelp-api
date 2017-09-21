@@ -72,7 +72,7 @@ class Yelp {
   makeReq(resource, params = {}, tries) {
     if (!tries) {
       tries = 0;
-    };
+    }
 
     const promise = new Promise((resolve, reject) => {
       const debug = params.debug;
@@ -89,6 +89,7 @@ class Yelp {
             // Try three times on a 401 to refresh the access token
             // It seems they last for about three months before expiring
             if (tries < 3 && err.statusCode === 401) {
+              tries += 1;
               return this.getAccessToken().then(() => this.makeReq(resource, params, tries));
             }
 
