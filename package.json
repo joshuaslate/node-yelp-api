@@ -1,6 +1,6 @@
 {
   "name": "node-yelp-api-v3",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A promise-based JavaScript client for dealing with Yelp's API (v3).",
   "main": "./index.js",
   "scripts": {
