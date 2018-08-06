@@ -1,3 +1,7 @@
+<aside class="warning">
+  This package has been deprecated due to changes to the Yelp Fusion API. Consider using this newer package instead: https://www.npmjs.com/package/yelp-fusion
+</aside>
+
 # Node Yelp API (v3.0)
 A promise-based JavaScript client for dealing with Yelp's API (v3).
 
